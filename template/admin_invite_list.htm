@@ -1,0 +1,69 @@
+<form method="post" action="">
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+	<table class="tb tb2 ">
+    	<tbody>
+      	<tr class="hover">
+        	<td width="80">生成人UID</td>
+        	<td width="100"><input type="text" name="uid" class="txt" value="{$uid}"></td>
+        	<td><input type="submit" name="srchbtn" class="btn" value="搜索"></td>
+      	</tr>
+    	</tbody>
+  	</table>
+</form>
+
+<table class="tb tb2">
+    <tbody>
+        <tr class="partition">
+            <th>生成人</th>
+            <th>邀请码</th>
+            <th>受邀人</th>
+            <th>IP</th>
+            <th>生成时间</th>
+            <th>结束时间</th>
+            <th>使用时间</th>
+            <th></th>
+        </tr>
+        <!--{loop $invites $invite}-->
+        <tr id="invite_{$invite['id']}">
+            <td>
+            	<a href="home.php?mod=space&uid={$invite['uid']}" target="_blank">$usernames[$invite['uid']] ({$invite['uid']})</a>
+            </td>
+            <td>
+            	{$invite['code']}
+            </td>
+            <td>
+            	<!--{if $invite['fuid']}-->
+            	<a href="home.php?mod=space&uid={$invite['fuid']}" target="_blank">{$invite['fuid']} ({$invite['fusername']})</a>
+            	<!--{/if}-->
+            </td>
+            <td>
+            	{$invite['inviteip']}
+            </td>
+            <td>
+            	{date($invite['dateline'])}
+            </td>
+            <td>
+            	{date($invite['endtime'])}
+            </td>
+            <td>
+            	<!--{if $invite['fuid']}-->{date($invite['regdateline'])}<!--{/if}-->
+            </td>
+            <td>
+				<a href="javascript:;" onclick="invD( '{$invite['id']}' )">删除</a>
+            </td>
+        </tr>
+        <!--{/loop}-->
+        <!--{if $multi}-->
+        <tr>
+            <td colspan="8">
+                <div class="cuspages right">{$multi}</div>
+            </td>
+        </tr>
+        <!--{/if}-->
+    </tbody>
+</table>
+<script>
+	function invD( id ){
+		ajaxget('admin.php?action=plugins&operation=config&identifier=invitation_skip_verification&pmod=admin_invite_list&formhash={FORMHASH}&invdel='+id , 'invite_'+id );
+	}
+</script>

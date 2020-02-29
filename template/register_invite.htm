@@ -1,0 +1,43 @@
+<div class="bbda pbm mbm">
+    <div class="bm bw0">
+        <form method="post" id="newinvite" autocomplete="off" action="">
+            <table cellspacing="0" cellpadding="0" width="100%" class="tfm mbm">
+                <caption class="cl">
+                    <p class="mtn mbn">您可以通过 QQ、MSN 等 IM 工具，或者发送邮件，把下面的邀请码告诉您的好友，邀请他们加入进来 </p>
+                </caption>
+                <tbody>
+                    <tr>
+                        <td class="bbda"><strong>邀请码</strong></td>
+                        <td class="bbda"><strong>有效时间</strong></td>
+                    </tr>
+                </tbody>
+                <tbody id="invitelist">
+                   	<!--{loop $invites $invite}-->
+                    <tr>
+                        <td class="bbda">
+                        	<a href="javascript:;" onclick="setCopy('{$invite['code']}', '邀请码复制成功');return false;">{$invite['code']}</a> &nbsp;<a href="javascript:;" onclick="setCopy('{$invite['code']}', '邀请码复制成功');return false;" class="xi2">[复制]</a>
+                        </td>
+                        <td class="bbda">
+							{date($invite['endtime'])}
+                        </td>
+                    </tr>
+                    <!--{/loop}-->
+                </tbody>
+
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <p class="mtm">每个邀请码需要花费：金钱 <strong class="xi1">$pvars['buy_price']</strong> ( 您现在拥有金钱 <strong id="haveallcredit">$mem_extcredit</strong> )</p>
+                            <p class="d">请输入要购买的邀请码数量。邀请码的有效期为 $pvars['expire_time'] 天，过期自动失效</p>
+                            <input type="text" name="invitenum" value="1" size="10" class="px vm" style="width: auto;">
+                            <button type="submit" name="invitesubmit_btn" value="true" class="pn vm"><em>获取邀请码</em></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="hidden" name="handlekey" value="newinvite">
+            <input type="hidden" name="invitesubmit" value="true">
+            <input type="hidden" name="formhash" value="{FORMHASH}">
+         </form>
+    </div>
+</div>

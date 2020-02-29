@@ -1,0 +1,29 @@
+<!--{block return}-->
+
+<div class="rfm">
+  <table>
+    <tbody>
+      <tr>
+        <th><label for="invitecode">邀请码:</label></th>
+        <td>
+         	<input type="text" id="invitecode" name="invitecode" size="25" tabindex="1" class="px" value="" onkeyup="ck_invit(this.value)" onafterpaste="ck_invit(this.value)">
+        </td>
+        <td class="tipcol"><i id="tip_invitecode" class="p_tip" style="display: none;">使用邀请码注册可以无需审核</i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+function ck_invit( code ){
+	if( code.length == 15 ){
+		ajaxget('plugin.php?id=invitation_skip_verification:ajax&hash={FORMHASH}&act=invite_ck&code='+ code , 'tip_invitecode' , 'tip_invitecode', 'tip_invitecode', 'block');
+	}else if( code.length > 15 ){
+		$('tip_invitecode').innerHTML = '邀请码超过15位';
+	}else{
+		$('tip_invitecode').innerHTML = '使用邀请码注册可以无需审核';
+	}
+}
+</script>
+
+<!--{/block}-->
