@@ -1,1 +1,1 @@
-more info: [https://jingine.com/discuz-invitation-skip-verification](https://jingine.com/discuz-invitation-skip-verification)
+more info: [https://jingine.com/pay_for_auto_up](https://jingine.com/pay_for_auto_up)
